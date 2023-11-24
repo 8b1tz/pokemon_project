@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Pokémon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+            <ul class="menu">
+              <li><a class="menuItem" href="#">Home</a></li>
+              <li><a class="menuItem" href="ivcalculator.html">I.V Calculator</a></li>
+              <li><a class="menuItem" href="items.html">Items</a></li>
+              <li><a class="menuItem" href="detonato.html">Detonato</a></li>
+            </ul>
+            <button class="hamburger">
+              <!-- material icons https://material.io/resources/icons/ -->
+              <i class="menuIcon">menu</i>
+              <i class="closeIcon">close</i>
+            </button>
+    </header>
+    <div class="wrapper">
+        <h1>Pokémon</h1>
+            <input type="text" id="searchInput" placeholder="Buscar Pokémon..." oninput="searchPokemon()">
+        <main class="container">
+            <div class="poke-container" id="pokeList">
+                <!-- Pokémon serão preenchidos aqui -->
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2023 Pokémon Company</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
