@@ -10,6 +10,7 @@ from models.usuario import User, UserModel, PostCreate
 import jwt
 from typing import Optional
 
+
 SECRET_KEY = "chave_super_secreta"
 ALGORITHM = "HS256"
 SQLALCHEMY_DATABASE_URL = "sqlite:///./usuarios_teste.db"
@@ -18,6 +19,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 Base.metadata.create_all(bind=engine)
+
 
 def create_access_token(data: dict, expires_delta: timedelta):
     to_encode = data.copy()
@@ -47,11 +49,13 @@ def create_user(db, user: User):
     db.refresh(db_user)
     return {"username": db_user.username, "token": db_user.token}
 
+
 async def get_access_token(cookie: Optional[str] = None):
     if cookie is None:
         raise HTTPException(status_code=401, detail="Token não fornecido corretamente")
-
     return cookie
+
+
 async def get_token_autenticado(token: str = Depends(get_access_token)):
     try:
         print(token)
@@ -62,6 +66,7 @@ async def get_token_autenticado(token: str = Depends(get_access_token)):
         return usuario
     except jwt.JWTError:
         raise HTTPException(status_code=401, detail="Token inválido")
+
 
 def get_user_by_username(db, username: str):
     return db.query(UserModel).filter(UserModel.username == username).first()
@@ -74,12 +79,14 @@ def get_db():
     finally:
         db.close()
 
+
 def create_post(db: Session, user_id: int, post: PostCreate):
     db_post = Post(**post.dict(), user_id=user_id)
     db.add(db_post)
     db.commit()
     db.refresh(db_post)
     return db_post
+
 
 def add_friend(db: Session, user_id: int, friend_id: int):
     friendship = Friendship(user_id=user_id, friend_id=friend_id)
