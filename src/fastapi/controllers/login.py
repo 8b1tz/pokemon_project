@@ -10,7 +10,7 @@ from models.usuario import User, UserModel, PostCreate
 import jwt
 from typing import Optional
 
-SECRET_KEY = "sua_chave_secreta"
+SECRET_KEY = "chave_super_secreta"
 ALGORITHM = "HS256"
 SQLALCHEMY_DATABASE_URL = "sqlite:///./usuarios_teste.db"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
