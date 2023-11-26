@@ -9,26 +9,29 @@ from fastapi import Depends, Header, HTTPException
 import bcrypt
 from datetime import datetime, timedelta
 from typing import List, Optional
+from pydantic import BaseModel
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
+
 
 Base = declarative_base()
+
 
 class User(BaseModel):
     username: str
     password: str
+
 
 class PostCreate(BaseModel):
     title: str
     content: str
     user_id: int  # Referência ao ID do usuário que cria o post
     
-from pydantic import BaseModel
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
-# ... outros imports
 
 Base = declarative_base()
+
 
 # Definição da tabela intermediária Friendship
 class Friendship(Base):
@@ -36,7 +39,6 @@ class Friendship(Base):
     user_id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
     friend_id = Column(Integer, ForeignKey("usuarios.id"), primary_key=True)
 
-# ... resto do código
 
 class UserModel(Base):
     __tablename__ = "usuarios"
