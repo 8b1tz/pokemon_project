@@ -2,10 +2,6 @@ from passlib.context import CryptContext
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-# Seu código existente...
-
-# ... (o restante do seu código)
-
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
